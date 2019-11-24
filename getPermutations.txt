@@ -1,0 +1,77 @@
+Write a function that takes in an array of unique integers and
+returns an array of all permutations of those integers
+
+Time --> O(n * n!)
+
+function getPermutations(array){
+if(array.length === 0 ) return []
+  let result = []
+  getPermuationsHelper(array,result,[])
+  return result
+}
+
+function getPermutationHelper(array,result,currPerm){
+
+  if(array.length === 0){
+    result.push(currPerm)
+    return
+  }
+  
+  for(let i = 0; i < array.length; i++){
+    let currNum = array[i]
+    let newPerm = currPerm.concat(currNum)
+    let newArr =  []
+    for(let j = 0; j < array.length; j++){
+        if(j !== i){
+          newArr.push(array[j])
+        }  
+    }
+    getPermutationHelper(newArr, result, newPerm)
+  }
+  return result
+}
+
+main(array) 
+  let result  = []
+  helper(0,result, array)
+  
+  
+  helper(idx, result, array){
+    if(idx === array.length - 1){
+      result.push(array.concat())
+    }else {
+      for(let j = i; j < array.length; j++){
+        swap(i, j, array)
+        getPermutationHelper(i + 1, result,array)
+        swap(i, j, array)
+      }
+    }
+  }
+  
+  
+ function getPermutations(array){
+ if(array.length === 0) return []
+  let result = []
+  getPermutationHelper(0,result,array)
+  return result
+ }
+ 
+ function getPermutationHelper(idx, result,array){
+  if(idx === array.length - 1){
+    result.push(array.concat())
+  }else {
+    for(let j = idx; j < array.length; j++){
+      swap(j,idx,array)
+      getPermutationHelper(idx + 1, result, array)
+      swap(j, idx, array)
+    }
+  }
+ }
+ 
+ function swap(i,j,array){
+  let temp = array[i]
+  array[i] = array[j]
+  array[j] = temp
+ }
+ 
+  
